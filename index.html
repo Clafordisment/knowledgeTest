@@ -1,57 +1,223 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вопросы</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    
+
     <style>
+        .listOfColors {
+            /*Цвета палитры скопированные с прошлых сайтов 
+            для поддержания единой стилистики и 
+            быстрого заполнения стилей (tab)*/
+            color: #0a0a0a;
+            color: #1a1a1a;
+            color: #2a2a2a;
+            color: #333333;
+            color: #444444;
+            color: #666666;
+            color: #b0b0b0;
+            color: #e0e0e0;
+            color: #ffffff;
+        }
+
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: "Inter";
         }
+
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            animation: glow 10s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            }
+
+            100% {
+                box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+            }
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .q-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            border: 2px solid #444444;
+            border-radius: 8px;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .q-table:hover {
+            border-color: #666666;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: #2a2a2a;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 1px solid #444444;
+        }
+
+        .ans-var {
+            padding: 12px 15px;
+            border-bottom: 1px solod #333333;
+            font-size: 16px;
+        }
+
+        .ans-input {
+            width: 100%;
+            max-width: 80px;
+            background-color: #2a2a2a;
+            border: 1px solid #444444;
+            color: #e0e0e0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            transition: border-color 0.4s ease;
+        }
+
+        .input-field {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            margin-bottom: 40px;
+        }
+
+        .ans-input:focus {
+            outline: none;
+            border-color: #666666;
+        }
+
+        .summary {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #b0b0b0;
+        }
+
+        .check-btn {
+            background-color: #2a2a2a;
+            color: #b0b0b0;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .restart-btn {
+            background-color: #2a2a2a;
+            color: #b0b0b0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .check-btn:hover, .restart-btn:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .correct {
+            border-color: blue;
+        }
+
+        .incorrect{
+            border-color: red;
+        }
+
+
     </style>
 </head>
 
 <body>
-    <div>
-        <h1>
+    <div class="container">
+        <h1 class="title">
             Тест-собеседование уровня "Junior"
         </h1>
-        
-        <table>
+
+        <table class="q-table">
             <tr>
                 <th> ___ </th>
             </tr>
             <tr>
-                1. ___
+                <td class="ans-var">
+                    1. ___
+                </td>
             </tr>
             <tr>
-                2. ___
-            </tr>
-            </tr>
-            <tr>
-                3. ___
+                <td class="ans-var">
+                    2. ___
+                </td>
             </tr>
             <tr>
-                4. ___
+                <td class="ans-var">
+                    3. ___
+                </td>
             </tr>
-            <div>
-                <input type="number" min = "1" max = "4">
-            </div>
+            <tr>
+                <td class="ans-var">
+                    4. ___
+                </td>
+            </tr>
         </table>
-        
-        <div>
+        <div class="input-field">
+            <input type="number" min="1" max="4" class="ans-input">
+        </div>
+
+
+
+        <div class="summary">
             Правильных ответов: 0/5
         </div>
 
-        <button>
+        <button class="check-btn">
             Проверка
         </button>
-        <button>
+        <button class="restart-btn">
             Начать снова
         </button>
     </div>
