@@ -156,7 +156,8 @@
             margin-bottom: 40px;
         }
 
-        .check-btn:hover, .restart-btn:hover {
+        .check-btn:hover,
+        .restart-btn:hover {
             background-color: #333333;
             color: #ffffff;
         }
@@ -165,11 +166,9 @@
             border-color: blue;
         }
 
-        .incorrect{
+        .incorrect {
             border-color: red;
         }
-
-
     </style>
 </head>
 
@@ -229,7 +228,7 @@
             </tr>
             <tr>
                 <td class="ans-var">
-                    4.  :
+                    4. :
                 </td>
             </tr>
         </table>
@@ -338,7 +337,7 @@
     </div>
 </body>
 
-,<script>
+<script>
     /* сбор нужных регов:
 
     .q-table
@@ -354,23 +353,56 @@
     const  = document.querySelector("");
 
     */
-    
-    
+
+
     //осн. DOM'ы
     const qTables = document.querySelectorAll(".q-table");
     const ansInputs = document.querySelectorAll(".ans-input");
     const checkBtn = document.querySelector(".check-btn");
     const restartBtn = document.querySelector(".restart-btn");
     const summary = document.querySelector(".summary");
-    
+
     //ответы на вопросы
     const answers = [2, 4, 2, 1, 2]
 
-    restartBtn.
+    restartBtn.addEventListener("click", () => {        //перезагрузка сайта
+        location.reload();
+        window.scrollTo(0, 0);
+    })
 
-    checkBtn.addEventListener("click", checkAnswers);
+    checkBtn.addEventListener("click", () => {
+        //осн. функция проверки правильности, изменения соотв. стилей и 
+        // подсчёта пр. ответов
+        let correctCount = 0;
 
-    
+        for (let i = 0; ansInputs.length > i; i++) {
+            const userAns = parseInt(ansInputs[i].value);
+            const table = qTables[i];
 
+            if (userAns === answers[i]) {
 
+                /*
+        
+                .correct 
+        
+                .incorrect
+        
+                */
+                table.classList.add("correct")
+                table.classList.remove("incorrect")
+                ansInputs[i].classList.add("correct")
+                ansInputs[i].classList.remove("incorrect")
+
+                correctCount++;
+            }
+            else {
+                table.classList.add("incorrect")
+                table.classList.remove("correct")
+                ansInputs[i].classList.add("incorrect")
+                ansInputs[i].classList.remove("correct")
+            }
+
+            summary.textContent = `Правильных ответов: ${correctCount}/5`;
+        }
+    });
 </script>
